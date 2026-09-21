@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PRs into main must come from dev
+        if: github.event_name == 'pull_request' && github.head_ref != 'dev'
+        run: |
+          echo "::error::Only 'dev' may open PRs into 'main' (head was '${{ github.head_ref }}')."
+          exit 1
+
+  build:
+    needs: guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:run
+      - run: npm run build
+        env:
+          VITE_API_URL: https://example.invalid
