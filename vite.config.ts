@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/elemental-monster-duel-ui/' : '/',
   plugins: [react()],
   test: {
     globals: true,
@@ -16,4 +17,4 @@ export default defineConfig({
       exclude: ['src/main.tsx', 'src/**/*.d.ts', 'src/test/**'],
     },
   },
-})
+}))
