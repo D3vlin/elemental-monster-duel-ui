@@ -16,6 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    "paths": {
+      "@pages/*": ["./src/pages/*"],
+      "@constants/*": ["./src/constants/*"]
+    },
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
