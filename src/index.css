@@ -1,15 +1,34 @@
 @import 'tailwindcss';
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --shadow:
+  --light-text: #6b6375;
+  --light-text-h: #08060d;
+  --light-bg: #fff;
+  --light-border: #e5e4e7;
+  --light-accent: #aa3bff;
+  --light-accent-bg: rgba(170, 59, 255, 0.1);
+  --light-accent-border: rgba(170, 59, 255, 0.5);
+  --light-shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --dark-text: #9ca3af;
+  --dark-text-h: #f3f4f6;
+  --dark-bg: #16171d;
+  --dark-border: #2e303a;
+  --dark-accent: #c084fc;
+  --dark-accent-bg: rgba(192, 132, 252, 0.15);
+  --dark-accent-border: rgba(192, 132, 252, 0.5);
+  --dark-shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  --text: var(--light-text);
+  --text-h: var(--light-text-h);
+  --bg: var(--light-bg);
+  --border: var(--light-border);
+  --accent: var(--light-accent);
+  --accent-bg: var(--light-accent-bg);
+  --accent-border: var(--light-accent-border);
+  --shadow: var(--light-shadow);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
@@ -25,17 +44,32 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  :root:not([data-theme='light']) {
+    --text: var(--dark-text);
+    --text-h: var(--dark-text-h);
+    --bg: var(--dark-bg);
+    --border: var(--dark-border);
+    --accent: var(--dark-accent);
+    --accent-bg: var(--dark-accent-bg);
+    --accent-border: var(--dark-accent-border);
+    --shadow: var(--dark-shadow);
   }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --text: var(--dark-text);
+  --text-h: var(--dark-text-h);
+  --bg: var(--dark-bg);
+  --border: var(--dark-border);
+  --accent: var(--dark-accent);
+  --accent-bg: var(--dark-accent-bg);
+  --accent-border: var(--dark-accent-border);
+  --shadow: var(--dark-shadow);
 }
 
 body {

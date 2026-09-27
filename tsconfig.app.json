@@ -17,8 +17,12 @@
     "jsx": "react-jsx",
 
     "paths": {
+      "@api/*": ["./src/api/*"],
       "@pages/*": ["./src/pages/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@i18n": ["./src/i18n/index.ts"],
+      "@i18n/*": ["./src/i18n/*"]
     },
 
     /* Linting */
