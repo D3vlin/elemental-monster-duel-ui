@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
-import HomePage from './HomePage'
+import HomePage from '@pages/Home/HomePage'
 
 describe('HomePage', () => {
   it('shows "nuevo duelo" as disabled until the duel engine is connected', () => {
