@@ -20,7 +20,9 @@
       "@api/*": ["./src/api/*"],
       "@pages/*": ["./src/pages/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@i18n": ["./src/i18n/index.ts"],
+      "@i18n/*": ["./src/i18n/*"]
     },
 
     /* Linting */

@@ -1,0 +1,18 @@
+{
+  "app": {
+    "tagline": "Un duelo de monstruos elementales, 1 vs 1 contra la IA."
+  },
+  "home": {
+    "newDuel": "⚔️ Nuevo duelo (próximamente)",
+    "newDuelTitle": "Todavía no está conectado al motor de duelo",
+    "bestiary": "📖 Bestiario (próximamente)",
+    "bestiaryTitle": "Todavía no está conectado al bestiario"
+  },
+  "theme": {
+    "toLight": "Cambiar a modo claro",
+    "toDark": "Cambiar a modo oscuro"
+  },
+  "language": {
+    "toggle": "Cambiar idioma"
+  }
+}

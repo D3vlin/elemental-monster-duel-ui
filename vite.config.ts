@@ -20,6 +20,7 @@ export default defineConfig(({ command }) => ({
       '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
       '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
       '@constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
+      '@i18n': fileURLToPath(new URL('./src/i18n', import.meta.url)),
     },
   },
   test: {
