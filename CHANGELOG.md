@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/D3vlin/elemental-monster-duel-ui/compare/v0.1.1...v0.1.2) (2026-09-27)
+
+
+### Bug Fixes
+
+* checkout main ([a1cce87](https://github.com/D3vlin/elemental-monster-duel-ui/commit/a1cce873e9b471208e08bdbbc68ecdbc39f92995))
+
 ## [0.1.1](https://github.com/D3vlin/elemental-monster-duel-ui/compare/v0.1.0...v0.1.1) (2026-09-27)
 
 
