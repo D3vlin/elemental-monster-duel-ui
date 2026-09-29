@@ -12,6 +12,11 @@
     "toLight": "Switch to light mode",
     "toDark": "Switch to dark mode"
   },
+  "serviceUnavailable": {
+    "title": "Service unavailable",
+    "message": "The app isn't available right now — it may be a temporary service pause. We're already looking into it, try again in a bit.",
+    "retry": "Retry"
+  },
   "language": {
     "toggle": "Switch language"
   }

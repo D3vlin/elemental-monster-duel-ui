@@ -11,6 +11,10 @@ function renderAt(path: string) {
   )
 }
 
+afterEach(() => {
+  resetServiceStatus()
+})
+
 describe('App', () => {
   it('renders HomePage at /', () => {
     renderAt('/')
@@ -22,5 +26,14 @@ describe('App', () => {
     renderAt('/')
 
     expect(screen.getByText(`v${__APP_VERSION__}`)).toBeInTheDocument()
+  })
+
+  it('replaces the whole app with the service-unavailable page when the backend is reported down', () => {
+    reportServiceUnavailable()
+
+    renderAt('/')
+
+    expect(screen.getByRole('heading', { name: /servicio no disponible/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /elementalmonsterduel/i })).not.toBeInTheDocument()
   })
 })
