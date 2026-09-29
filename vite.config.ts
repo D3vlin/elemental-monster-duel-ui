@@ -19,6 +19,7 @@ export default defineConfig(({ command }) => ({
       '@api': fileURLToPath(new URL('./src/api', import.meta.url)),
       '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
       '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
       '@constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
       '@i18n': fileURLToPath(new URL('./src/i18n', import.meta.url)),
     },

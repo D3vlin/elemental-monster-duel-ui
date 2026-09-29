@@ -1,6 +1,3 @@
-// <main> centrado a pantalla completa, base compartida por las pantallas de
-// un solo bloque de contenido (Home, ServiceUnavailable). `className` agrega
-// lo que varía entre ellas (p. ej. el gap).
 import type { ReactNode } from 'react'
 
 interface BodyContainerProps {

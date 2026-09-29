@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
+import BodyContainer from '@components/BodyContainer'
 
 export default function HomePage() {
   const { t } = useTranslation()
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-(--bg) p-6 text-center">
+    <BodyContainer className="gap-8">
       <div>
         <h1 className="text-4xl font-semibold text-(--text-h)">ElementalMonsterDuel</h1>
         <p className="mt-2 text-(--text)">{t('app.tagline')}</p>
@@ -29,6 +30,6 @@ export default function HomePage() {
           {t('home.bestiary')}
         </button>
       </nav>
-    </main>
+    </BodyContainer>
   )
 }
