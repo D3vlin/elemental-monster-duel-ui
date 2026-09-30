@@ -1,14 +1,26 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { afterEach, describe, expect, it } from 'vitest'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { reportServiceUnavailable, resetServiceStatus } from '@hooks/useServiceStatus'
 import App from '../App'
 
+const { getEntriesMock } = vi.hoisted(() => ({
+  getEntriesMock: vi.fn(),
+}))
+vi.mock('@api/WhatsNewService', () => ({ WhatsNewService: { getEntries: getEntriesMock } }))
+beforeEach(() => {
+  getEntriesMock.mockResolvedValue({ code: 200, status: 'success', data: [] })
+})
+
 function renderAt(path: string) {
+  const queryClient = new QueryClient()
   return render(
-    <MemoryRouter initialEntries={[path]}>
-      <App />
-    </MemoryRouter>,
+    <QueryClientProvider client={queryClient}>
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>
+    </QueryClientProvider>,
   )
 }
 

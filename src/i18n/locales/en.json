@@ -19,5 +19,12 @@
   },
   "language": {
     "toggle": "Switch language"
+  },
+  "whatsNew": {
+    "title": "What's New",
+    "loading": "Loading what's new...",
+    "empty": "No updates published yet.",
+    "close": "Close",
+    "unseenLabel": "There's something new"
   }
 }

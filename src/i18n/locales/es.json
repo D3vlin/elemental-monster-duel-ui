@@ -19,5 +19,12 @@
   },
   "language": {
     "toggle": "Cambiar idioma"
+  },
+  "whatsNew": {
+    "title": "Novedades",
+    "loading": "Cargando novedades...",
+    "empty": "Todavía no hay novedades publicadas.",
+    "close": "Cerrar",
+    "unseenLabel": "Hay novedades sin ver"
   }
 }
