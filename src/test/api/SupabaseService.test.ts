@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { supabaseGet, SupabaseRequestError } from '@api/SupabaseService'
 
 function mockFetchOnce(response: Response) {
@@ -7,13 +7,8 @@ function mockFetchOnce(response: Response) {
   return fetchMock
 }
 
-beforeEach(() => {
-  vi.spyOn(console, 'error').mockImplementation(() => {})
-})
-
 afterEach(() => {
   vi.unstubAllGlobals()
-  vi.restoreAllMocks()
 })
 
 describe('supabaseGet', () => {

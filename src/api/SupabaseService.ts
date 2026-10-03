@@ -29,8 +29,7 @@ export async function supabaseGet<T>(path: string, params?: Record<string, strin
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       },
     })
-  } catch (error) {
-    console.error('Supabase request failed:', error)
+  } catch {
     throw new SupabaseRequestError('No se pudo conectar con Supabase.', 0)
   }
 

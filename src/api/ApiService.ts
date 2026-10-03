@@ -56,8 +56,7 @@ async function handleRequest<T>(request: Promise<Response>, voidContent: T | nul
     const data = text ? (JSON.parse(text) as T) : voidContent
 
     return { code: response.status, status: 'success', data }
-  } catch (error) {
-    console.error('Request failed:', error)
+  } catch {
     return { code: 0, status: 'error', message: 'No se pudo conectar con la API.' }
   }
 }
