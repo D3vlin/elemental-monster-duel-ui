@@ -36,7 +36,8 @@ export async function supabaseGet<T>(path: string, params?: Record<string, strin
 
   if (!response.ok) {
     const body: { message?: string } | null = await response.json().catch(() => null)
-    throw new SupabaseRequestError(body?.message ?? 'Supabase request failed', response.status)
+    console.error('Supabase request failed:', body?.message ?? response.statusText)
+    throw new SupabaseRequestError('No se pudo completar la solicitud a Supabase.', response.status)
   }
 
   return response.json() as Promise<T>
