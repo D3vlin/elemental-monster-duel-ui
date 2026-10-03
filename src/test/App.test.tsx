@@ -53,4 +53,16 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: /servicio no disponible/i })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: /elementalmonsterduel/i })).not.toBeInTheDocument()
   })
+
+  it('shows the boot splash when landing on Home', () => {
+    renderAt('/')
+
+    expect(screen.getByTestId('app-splash')).toBeInTheDocument()
+  })
+
+  it('does not show the boot splash when landing directly on another route', () => {
+    renderAt('/bestiary')
+
+    expect(screen.queryByTestId('app-splash')).not.toBeInTheDocument()
+  })
 })
