@@ -60,3 +60,5 @@ jobs:
       - run: pnpm run build
         env:
           VITE_API_URL: https://example.invalid
+          VITE_SUPABASE_URL: https://example.invalid
+          VITE_SUPABASE_ANON_KEY: example

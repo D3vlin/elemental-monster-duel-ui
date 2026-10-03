@@ -20,6 +20,10 @@
   "language": {
     "toggle": "Cambiar idioma"
   },
+  "maintenance": {
+    "startsIn": "Empieza en {{time}}",
+    "endsIn": "Termina en {{time}}"
+  },
   "whatsNew": {
     "title": "Novedades",
     "loading": "Cargando novedades...",

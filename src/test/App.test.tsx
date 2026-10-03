@@ -5,12 +5,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { reportServiceUnavailable, resetServiceStatus } from '@hooks/useServiceStatus'
 import App from '../App'
 
-const { getEntriesMock } = vi.hoisted(() => ({
+const { getEntriesMock, getActiveWindowMock } = vi.hoisted(() => ({
   getEntriesMock: vi.fn(),
+  getActiveWindowMock: vi.fn(),
 }))
 vi.mock('@api/WhatsNewService', () => ({ WhatsNewService: { getEntries: getEntriesMock } }))
+vi.mock('@api/MaintenanceService', () => ({ MaintenanceService: { getActiveWindow: getActiveWindowMock } }))
+
 beforeEach(() => {
   getEntriesMock.mockResolvedValue({ code: 200, status: 'success', data: [] })
+  getActiveWindowMock.mockResolvedValue([])
 })
 
 function renderAt(path: string) {

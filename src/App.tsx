@@ -8,6 +8,7 @@ import VersionBadge from './components/VersionBadge'
 import ThemeToggle from './components/ThemeToggle'
 import LanguageToggle from './components/LanguageToggle'
 import WhatsNewModal from './components/WhatsNewModal'
+import MaintenanceBanner from './components/MaintenanceBanner'
 import type { ModalOrigin } from './components/Modal/modalOrigin'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <MaintenanceBanner />
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />
       </Routes>
