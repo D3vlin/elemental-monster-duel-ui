@@ -27,25 +27,27 @@ function createHeaders({ addToken }: EndpointProperty, isJson = true): HeadersIn
   return headers
 }
 
+async function safeParseError(response: Response): Promise<string | undefined> {
+  try {
+    const errorData = (await response.json()) as { message?: string } | null
+    return errorData?.message ?? undefined
+  } catch {
+    return undefined
+  }
+}
+
 async function handleRequest<T>(request: Promise<Response>, voidContent: T | null = null): Promise<Message<T>> {
   try {
     const response = await request
 
     if (response.status === 401) {
-      return { code: response.status, status: 'Unauthorized', message: 'Sesión inválida o expirada.' }
+      return { code: response.status, status: 'Unauthorized', message: (await safeParseError(response)) ?? 'Sesión inválida o expirada.' }
     }
     if (response.status === 404) {
-      return { code: response.status, status: 'Not Found', message: 'Recurso no encontrado.' }
+      return { code: response.status, status: 'Not Found', message: (await safeParseError(response)) ?? 'Recurso no encontrado.' }
     }
     if (!response.ok) {
-      let errorData: { message?: string } | null = null
-      try {
-        errorData = await response.json()
-      } catch {
-        errorData = null
-      }
-
-      return { code: response.status, status: 'error', message: errorData?.message ?? 'Request failed' }
+      return { code: response.status, status: 'error', message: (await safeParseError(response)) ?? 'Request failed' }
     }
 
     if (response.status === 204) {

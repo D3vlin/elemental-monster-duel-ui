@@ -107,20 +107,36 @@ describe('ApiService', () => {
   })
 
   describe('response handling', () => {
-    it('maps a 401 to status Unauthorized', async () => {
+    it('maps a 401 to status Unauthorized, falling back when the body has no message', async () => {
       mockFetchOnce(new Response(null, { status: 401 }))
 
       const result = await GetQuery('/x', {})
 
-      expect(result).toMatchObject({ code: 401, status: 'Unauthorized' })
+      expect(result).toMatchObject({ code: 401, status: 'Unauthorized', message: 'Sesión inválida o expirada.' })
     })
 
-    it('maps a 404 to status "Not Found"', async () => {
+    it('maps a 401 to status Unauthorized, using the backend message when present', async () => {
+      mockFetchOnce(new Response(JSON.stringify({ message: 'Token vencido' }), { status: 401 }))
+
+      const result = await GetQuery('/x', {})
+
+      expect(result).toMatchObject({ code: 401, status: 'Unauthorized', message: 'Token vencido' })
+    })
+
+    it('maps a 404 to status "Not Found", falling back when the body has no message', async () => {
       mockFetchOnce(new Response(null, { status: 404 }))
 
       const result = await GetQuery('/x', {})
 
-      expect(result).toMatchObject({ code: 404, status: 'Not Found' })
+      expect(result).toMatchObject({ code: 404, status: 'Not Found', message: 'Recurso no encontrado.' })
+    })
+
+    it('maps a 404 to status "Not Found", using the backend message when present', async () => {
+      mockFetchOnce(new Response(JSON.stringify({ message: 'Carta no encontrada' }), { status: 404 }))
+
+      const result = await GetQuery('/x', {})
+
+      expect(result).toMatchObject({ code: 404, status: 'Not Found', message: 'Carta no encontrada' })
     })
 
     it('maps another non-ok status to status error, using the backend message when present', async () => {
