@@ -11,6 +11,10 @@ export class ApiRequestError extends Error {
   }
 }
 
+export function isServiceDownStatus(code: number): boolean {
+  return code === 503 || code === 0
+}
+
 export async function unwrapResponse<T>(promise: Promise<Message<T>>): Promise<T | null> {
   const response = await promise
 
