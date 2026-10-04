@@ -12,6 +12,9 @@
     "toLight": "Cambiar a modo claro",
     "toDark": "Cambiar a modo oscuro"
   },
+  "splash": {
+    "skip": "Saltar presentación"
+  },
   "serviceUnavailable": {
     "title": "Servicio no disponible",
     "message": "La app no está disponible por el momento — puede ser una pausa temporal del servicio. Ya lo estamos revisando, volvé a intentar en un rato.",
