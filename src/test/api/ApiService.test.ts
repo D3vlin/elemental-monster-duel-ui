@@ -87,28 +87,19 @@ describe('ApiService', () => {
   })
 
   describe('credentials', () => {
-    it('defaults to same-origin', async () => {
+    it('always uses include, so a session cookie is never silently dropped', async () => {
       const fetchMock = mockFetchOnce(new Response('{}', { status: 200 }))
 
       await GetQuery('/x', {})
 
       const [, options] = fetchMock.mock.calls[0]
-      expect(options.credentials).toBe('same-origin')
-    })
-
-    it('uses include when addCredentials is set', async () => {
-      const fetchMock = mockFetchOnce(new Response('{}', { status: 200 }))
-
-      await GetQuery('/x', { addCredentials: true })
-
-      const [, options] = fetchMock.mock.calls[0]
       expect(options.credentials).toBe('include')
     })
 
-    it('uses include on body requests (POST/PUT) too, when addCredentials is set', async () => {
+    it('uses include on body requests (POST/PUT) too', async () => {
       const fetchMock = mockFetchOnce(new Response('{}', { status: 200 }))
 
-      await PostQuery('/x', { addCredentials: true }, { name: 'Fuego' })
+      await PostQuery('/x', {}, { name: 'Fuego' })
 
       const [, options] = fetchMock.mock.calls[0]
       expect(options.credentials).toBe('include')

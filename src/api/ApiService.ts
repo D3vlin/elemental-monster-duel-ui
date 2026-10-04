@@ -97,7 +97,7 @@ const httpParams = async <T>(
     fetch(`${baseUrl}${url}${query}`, {
       method,
       headers,
-      credentials: endpointProperty?.addCredentials ? 'include' : 'same-origin',
+      credentials: 'include',
     }),
   )
 }
@@ -117,7 +117,7 @@ const httpBody = async <TResponse, TRequest = unknown>(
     fetch(`${baseUrl}${url}`, {
       method,
       headers,
-      credentials: endpointProperty?.addCredentials ? 'include' : 'same-origin',
+      credentials: 'include',
       body: isFormData ? data : data ? JSON.stringify(data) : undefined,
     }),
   )
