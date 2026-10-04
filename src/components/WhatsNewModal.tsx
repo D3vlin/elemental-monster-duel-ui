@@ -3,6 +3,7 @@ import { useApiQuery } from '@hooks/useApiQuery'
 import { WhatsNewService } from '@api/WhatsNewService'
 import Modal from './Modal/Modal'
 import type { ModalOrigin } from './Modal/modalOrigin'
+import { groupEntriesByDate } from './whatsNewGrouping'
 
 interface WhatsNewModalProps {
   origin?: ModalOrigin | null
@@ -44,12 +45,18 @@ export default function WhatsNewModal({ origin = null, onClose }: WhatsNewModalP
             {!isLoading && !error && entries?.length === 0 && (
               <p className="text-sm text-(--text)">{t('whatsNew.empty')}</p>
             )}
-            {entries?.map((entry) => (
-              <article key={entry.id} className="border-b border-(--border) pb-4 last:border-b-0 last:pb-0">
-                <p className="text-xs text-(--text)">{new Date(entry.publishedAt).toLocaleDateString(i18n.language)}</p>
-                <h3 className="text-base font-medium text-(--text-h)">{entry.title}</h3>
-                <p className="mt-1 text-sm text-(--text)">{entry.body}</p>
-              </article>
+            {groupEntriesByDate(entries ?? [], i18n.language).map((group) => (
+              <section key={group.date} className="border-b border-(--border) pb-4 last:border-b-0 last:pb-0">
+                <p className="text-xs text-(--text)">{group.date}</p>
+                <div className="mt-1 flex flex-col gap-3">
+                  {group.entries.map((entry) => (
+                    <div key={entry.id}>
+                      <h3 className="text-base font-medium text-(--text-h)">{entry.title}</h3>
+                      <p className="mt-1 text-sm text-(--text)">{entry.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </>
