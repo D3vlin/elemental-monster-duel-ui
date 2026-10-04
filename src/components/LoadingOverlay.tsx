@@ -1,3 +1,4 @@
+import { Z_OVERLAY } from '@constants/zIndex'
 import GameLogo from './GameLogo'
 
 interface LoadingOverlayProps {
@@ -8,7 +9,7 @@ export default function LoadingOverlay({ label }: LoadingOverlayProps) {
   return (
     <div
       role="status"
-      className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-3 bg-(--bg)/70 backdrop-blur-sm"
+      className={`fixed inset-0 ${Z_OVERLAY} flex flex-col items-center justify-center gap-3 bg-(--bg)/70 backdrop-blur-sm`}
     >
       <GameLogo className="text-xl" />
       <div

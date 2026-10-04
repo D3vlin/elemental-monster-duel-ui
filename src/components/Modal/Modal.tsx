@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+import { Z_MODAL } from '@constants/zIndex'
 import type { ModalOrigin } from './modalOrigin'
 
 const TRANSITION_MS = 180
@@ -54,7 +55,7 @@ export default function Modal({ origin, onClose, ariaLabel, panelClassName, chil
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      className={`fixed inset-0 ${Z_MODAL} flex items-center justify-center bg-black/50 p-4`}
       style={{ opacity: visible ? 1 : 0, transition: `opacity ${TRANSITION_MS}ms ease` }}
       onClick={(event) => {
         if (!panelRef.current?.contains(event.target as Node)) requestClose()

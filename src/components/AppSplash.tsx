@@ -3,6 +3,7 @@
 // montado detrás — sin parpadeo. Reusa GameLogo, el mismo tratamiento que
 // LoadingOverlay, para que "el logo" sea una sola cosa en toda la app.
 import { useEffect, useState } from 'react'
+import { Z_MODAL } from '@constants/zIndex'
 import GameLogo from './GameLogo'
 
 const VISIBLE_MS = 1200
@@ -27,7 +28,7 @@ export default function AppSplash() {
     <div
       aria-hidden="true"
       data-testid="app-splash"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-(--bg)"
+      className={`fixed inset-0 ${Z_MODAL} flex items-center justify-center bg-(--bg)`}
       style={{ opacity: visible ? 1 : 0, transition: `opacity ${FADE_MS}ms ease` }}
     >
       <GameLogo className="text-4xl" />

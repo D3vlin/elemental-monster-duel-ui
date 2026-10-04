@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useApiQuery } from '@hooks/useApiQuery'
 import { useWhatsNewUnseen } from '@hooks/useWhatsNewUnseen'
 import { WhatsNewService } from '@api/WhatsNewService'
+import { Z_GLOBAL_CONTROLS } from '@constants/zIndex'
 import { getClickOrigin, type ModalOrigin } from './Modal/modalOrigin'
 
 interface VersionBadgeProps {
@@ -24,7 +25,7 @@ export default function VersionBadge({ onOpenWhatsNew }: VersionBadgeProps) {
       type="button"
       onClick={handleClick}
       aria-label={t('whatsNew.title')}
-      className={`fixed right-3 bottom-3 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs transition ${
+      className={`fixed right-3 bottom-3 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs transition ${Z_GLOBAL_CONTROLS} ${
         hasUnseen
           ? 'border-(--accent-border) bg-(--accent-bg) text-(--text-h)'
           : 'border-(--border) bg-(--bg) text-(--text) opacity-60'
