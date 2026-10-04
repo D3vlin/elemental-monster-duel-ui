@@ -3,8 +3,12 @@ import { useState } from 'react'
 const STORAGE_KEY = 'whatsNewLastSeenId'
 
 function readLastSeenId(): number | null {
-  const raw = localStorage.getItem(STORAGE_KEY)
-  return raw ? Number(raw) : null
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? Number(raw) : null
+  } catch {
+    return null
+  }
 }
 
 export function useWhatsNewUnseen(latestEntryId: number | undefined) {
@@ -14,7 +18,11 @@ export function useWhatsNewUnseen(latestEntryId: number | undefined) {
 
   function markSeen() {
     if (latestEntryId === undefined) return
-    localStorage.setItem(STORAGE_KEY, String(latestEntryId))
+    try {
+      localStorage.setItem(STORAGE_KEY, String(latestEntryId))
+    } catch {
+      //
+    }
     setLastSeenId(latestEntryId)
   }
 

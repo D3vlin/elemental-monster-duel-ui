@@ -1,9 +1,13 @@
 import { act, renderHook } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useWhatsNewUnseen } from '@hooks/useWhatsNewUnseen'
 
 beforeEach(() => {
   localStorage.clear()
+})
+
+afterEach(() => {
+  vi.restoreAllMocks()
 })
 
 describe('useWhatsNewUnseen', () => {
@@ -36,5 +40,27 @@ describe('useWhatsNewUnseen', () => {
     rerender({ id: 6 })
 
     expect(result.current.hasUnseen).toBe(true)
+  })
+
+  it('does not throw when localStorage.getItem is unavailable, treating it as nothing seen', () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new DOMException('blocked', 'SecurityError')
+    })
+
+    const { result } = renderHook(() => useWhatsNewUnseen(5))
+
+    expect(result.current.hasUnseen).toBe(true)
+  })
+
+  it('does not throw when localStorage.setItem is unavailable, still updating in-memory state', () => {
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new DOMException('quota exceeded', 'QuotaExceededError')
+    })
+
+    const { result } = renderHook(() => useWhatsNewUnseen(5))
+
+    act(() => result.current.markSeen())
+
+    expect(result.current.hasUnseen).toBe(false)
   })
 })
