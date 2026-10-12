@@ -1,36 +1,47 @@
 # elemental-monster-duel-ui
 
-Vite + React + TypeScript frontend for Elemental Monster Duel.
-Deployed as a static site to **GitHub Pages**.
+## 📌 Overview
 
-- **URL:** https://d3vlin.github.io/elemental-monster-duel-ui/
-- **API:** the Render service, via `import.meta.env.VITE_API_URL`
+**elemental-monster-duel-ui** is one of 6 repositories in the distributed
+architecture of Elemental Monster Duel. It holds the frontend — a Vite +
+React + TypeScript single-page app.
 
-## Develop
+---
 
-```bash
-pnpm install
-pnpm run dev        # http://localhost:5173
-pnpm test
-```
+## 🎯 Purpose
 
-## Deploy (GitHub Pages)
+This repository exists to:
 
-One-time setup:
+- Give players a browsable, playable interface
+- Stay a static site, deployable without a server of its own
+- Keep presentation concerns separate from the rest of the project
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. **Settings → Secrets and variables → Actions → Variables →** add
-   `VITE_API_URL` = `https://elemental-monster-duel-api.onrender.com`
-   (see `.env.example`).
+---
 
-Then every push to `main` runs `.github/workflows/deploy-pages.yml`:
-`pnpm install` → `pnpm run build` → upload `dist/` → `deploy-pages`.
+## 🧱 Project Architecture Context
 
-### Notes
+This repo is one of 6 in the Elemental Monster Duel ecosystem, each
+independently versioned and maintained:
 
-- `vite.config.ts` sets `base` to `/elemental-monster-duel-ui/` for `vite build`
-  (the project-pages sub-path); dev stays at `/`.
-- `dist/404.html` is a copy of `index.html` so client-side routes deep-link on Pages.
-- The Render free instance sleeps after ~15 min idle; the first request wakes it
-  (cold start ~30 s). The API must allow the Pages origin via CORS
-  (`APP_CORS_ALLOWED_ORIGINS=https://d3vlin.github.io` on Render).
+| Module | Responsibility | Repository |
+|---|---|---|
+| `db` | Database schema | https://github.com/D3vlin/elemental-monster-duel-db |
+| `entity` | JPA mapping | https://github.com/D3vlin/elemental-monster-duel-entity |
+| `dto` | Data transport | https://github.com/D3vlin/elemental-monster-duel-dto |
+| `mapper` | Entity ↔ DTO | https://github.com/D3vlin/elemental-monster-duel-mapper |
+| `api` | REST interface | https://github.com/D3vlin/elemental-monster-duel-api |
+| `ui` | Frontend | — (this) |
+
+---
+
+## 🚀 Why a Dedicated UI Module?
+
+- Ships and deploys on its own release cycle
+- A static site, hosted for free, with no server of its own to operate
+- The only module players interact with directly
+
+---
+
+## License
+
+No license — all rights reserved.
